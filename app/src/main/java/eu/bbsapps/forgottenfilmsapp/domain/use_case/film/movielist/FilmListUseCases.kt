@@ -1,4 +1,4 @@
-package eu.bbsapps.forgottenfilmsapp.domain.use_case.movie.movielist
+package eu.bbsapps.forgottenfilmsapp.domain.use_case.film.movielist
 
 data class FilmListUseCases(
     val addFilmToListUseCase: AddFilmToListUseCase,

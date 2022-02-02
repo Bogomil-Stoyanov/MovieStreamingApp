@@ -3,7 +3,7 @@ package eu.bbsapps.forgottenfilmsapp.presentation.auth.register
 import com.google.common.truth.Truth.assertThat
 import eu.bbsapps.forgottenfilmsapp.data.repoistory.FakeFilmRepository
 import eu.bbsapps.forgottenfilmsapp.domain.use_case.auth.RegisterUseCase
-import eu.bbsapps.forgottenfilmsapp.domain.use_case.movie.GetAllGenresUseCase
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.GetAllGenresUseCase
 import eu.bbsapps.forgottenfilmsapp.util.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before

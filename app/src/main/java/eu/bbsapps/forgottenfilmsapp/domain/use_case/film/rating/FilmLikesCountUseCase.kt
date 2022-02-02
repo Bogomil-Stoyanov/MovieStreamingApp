@@ -1,4 +1,4 @@
-package eu.bbsapps.forgottenfilmsapp.domain.use_case.movie.rating
+package eu.bbsapps.forgottenfilmsapp.domain.use_case.film.rating
 
 import eu.bbsapps.forgottenfilmsapp.ForgottenFilmsApp.Companion.resource
 import eu.bbsapps.forgottenfilmsapp.R
@@ -10,13 +10,13 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class FilmDislikesCountUseCase @Inject constructor(
+class FilmLikesCountUseCase @Inject constructor(
     private val repository: FilmRepository
 ) {
     operator fun invoke(id: String): Flow<Resource<Int>> = flow {
         try {
             emit(Resource.Loading<Int>())
-            val response = repository.getDislikedCount(id)
+            val response = repository.getLikedCount(id)
             emit(Resource.Success<Int>(response))
         } catch (e: HttpException) {
             emit(

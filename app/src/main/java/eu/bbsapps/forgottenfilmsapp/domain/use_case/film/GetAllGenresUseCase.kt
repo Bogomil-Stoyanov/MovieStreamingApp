@@ -1,4 +1,4 @@
-package eu.bbsapps.forgottenfilmsapp.domain.use_case.movie
+package eu.bbsapps.forgottenfilmsapp.domain.use_case.film
 
 import eu.bbsapps.forgottenfilmsapp.ForgottenFilmsApp.Companion.resource
 import eu.bbsapps.forgottenfilmsapp.R

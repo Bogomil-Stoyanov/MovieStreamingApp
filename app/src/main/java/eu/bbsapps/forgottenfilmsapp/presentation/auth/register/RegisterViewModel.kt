@@ -12,7 +12,7 @@ import eu.bbsapps.forgottenfilmsapp.R
 import eu.bbsapps.forgottenfilmsapp.common.Resource
 import eu.bbsapps.forgottenfilmsapp.data.remote.dto.requests.user.register.CreateAccountRequest
 import eu.bbsapps.forgottenfilmsapp.domain.use_case.auth.RegisterUseCase
-import eu.bbsapps.forgottenfilmsapp.domain.use_case.movie.GetAllGenresUseCase
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.GetAllGenresUseCase
 import eu.bbsapps.forgottenfilmsapp.presentation.auth.components.PasswordTextFieldState
 import eu.bbsapps.forgottenfilmsapp.presentation.components.OutlinedTextFieldState
 import kotlinx.coroutines.flow.launchIn
