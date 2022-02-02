@@ -10,9 +10,20 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import eu.bbsapps.forgottenfilmsapp.common.Constants.BASE_URL
 import eu.bbsapps.forgottenfilmsapp.common.Constants.ENCRYPTED_SHARED_PREF_NAME
 import eu.bbsapps.forgottenfilmsapp.data.remote.BasicAuthInterceptor
+import eu.bbsapps.forgottenfilmsapp.data.remote.FilmsApi
+import eu.bbsapps.forgottenfilmsapp.data.repository.FilmRepositoryImpl
+import eu.bbsapps.forgottenfilmsapp.domain.repository.FilmRepository
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.movie.movielist.AddFilmToListUseCase
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.movie.movielist.FilmListUseCases
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.movie.movielist.IsFilmAddedToListUseCase
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.movie.movielist.RemoveFilmFromListUseCase
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.movie.rating.*
 import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
 import javax.inject.Singleton
@@ -24,6 +35,26 @@ import javax.net.ssl.X509TrustManager
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    @Singleton
+    @Provides
+    fun provideMovieRepository(filmsApi: FilmsApi): FilmRepository =
+        FilmRepositoryImpl(filmsApi)
+
+    @Singleton
+    @Provides
+    fun provideMovieApi(
+        okHttpClient: OkHttpClient.Builder,
+        basicAuthInterceptor: BasicAuthInterceptor
+    ): FilmsApi {
+        val client = okHttpClient.addInterceptor(basicAuthInterceptor).build()
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client).build()
+            .create(FilmsApi::class.java)
+
+    }
 
     @Singleton
     @Provides
@@ -66,6 +97,23 @@ object AppModule {
             EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
         )
     }
+
+    @Singleton
+    @Provides
+    fun provideFilmRatingUseCases(repository: FilmRepository) = FilmRatingUseCases(
+        filmLikedUseCase = FilmLikedUseCase(repository),
+        filmDislikedUseCase = FilmDislikedUseCase(repository),
+        filmLikesCountUseCase = FilmLikesCountUseCase(repository),
+        filmDislikesCountUseCase = FilmDislikesCountUseCase(repository)
+    )
+
+    @Singleton
+    @Provides
+    fun provideFilmListUseCases(repository: FilmRepository) = FilmListUseCases(
+        addFilmToListUseCase = AddFilmToListUseCase(repository),
+        removeFilmFromListUseCase = RemoveFilmFromListUseCase(repository),
+        isFilmAddedToListUseCase = IsFilmAddedToListUseCase(repository)
+    )
 
     @Singleton
     @Provides

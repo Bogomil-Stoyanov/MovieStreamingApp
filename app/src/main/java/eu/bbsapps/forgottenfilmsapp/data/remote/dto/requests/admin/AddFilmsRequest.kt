@@ -1,7 +1,15 @@
 package eu.bbsapps.forgottenfilmsapp.data.remote.dto.requests.admin
 
-import eu.bbsapps.forgottenfilmsapp.data.remote.dto.responses.FilmResponse
-
 data class AddFilmsRequest(
-    val films: List<FilmResponse>
+    val movies: List<Film>
+)
+
+data class Film(
+    val name: String,
+    val imageUrls: List<String>,
+    val description: String,
+    val genres: List<String>,
+    val likedBy: List<String>,
+    val dislikedBy: List<String>,
+    val url: String
 )

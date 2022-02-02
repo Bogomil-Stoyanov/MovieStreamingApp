@@ -8,11 +8,11 @@ import dagger.hilt.android.HiltAndroidApp
 class ForgottenFilmsApp : Application() {
 
     companion object {
-        lateinit var res: Resources
+        lateinit var resource: Resources
     }
 
     override fun onCreate() {
         super.onCreate()
-        res = resources
+        resource = resources
     }
 }
