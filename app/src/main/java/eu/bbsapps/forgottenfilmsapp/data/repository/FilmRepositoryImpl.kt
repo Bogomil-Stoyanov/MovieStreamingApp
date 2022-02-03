@@ -30,11 +30,11 @@ class FilmRepositoryImpl @Inject constructor(private val moviesApi: FilmsApi) : 
     }
 
     override suspend fun updateInterests(addGenresRequest: UserGenresRequest) {
-        moviesApi.updateInterests(addGenresRequest)
+        moviesApi.updateGenres(addGenresRequest)
     }
 
     override suspend fun getInterests(): List<String> {
-        return moviesApi.getInterests()
+        return moviesApi.getUserGenres()
     }
 
     override suspend fun addFilmToList(id: String): SimpleResponse {

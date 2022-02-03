@@ -38,12 +38,12 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideMovieRepository(filmsApi: FilmsApi): FilmRepository =
+    fun provideFilmRepository(filmsApi: FilmsApi): FilmRepository =
         FilmRepositoryImpl(filmsApi)
 
     @Singleton
     @Provides
-    fun provideMovieApi(
+    fun provideFilmApi(
         okHttpClient: OkHttpClient.Builder,
         basicAuthInterceptor: BasicAuthInterceptor
     ): FilmsApi {

@@ -1,9 +1,12 @@
 package eu.bbsapps.forgottenfilmsapp.presentation.ui.theme
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.gestures.LocalOverScrollConfiguration
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 
 private val LightColorPalette = lightColors(
@@ -21,6 +24,7 @@ private val DarkColorPalette = lightColors(
 )
 
 
+@ExperimentalFoundationApi
 @Composable
 fun ForgottenFilmsAppTheme(
     content: @Composable() () -> Unit
@@ -30,6 +34,10 @@ fun ForgottenFilmsAppTheme(
     MaterialTheme(
         colors = colors,
         shapes = Shapes,
-        content = content
-    )
+    ) {
+        CompositionLocalProvider(
+            LocalOverScrollConfiguration provides null,
+            content = content
+        )
+    }
 }
