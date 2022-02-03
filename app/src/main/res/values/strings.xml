@@ -61,4 +61,6 @@
     <string name="film_image_urls">Линкове към снимки</string>
     <string name="add_film">Добавяне на филм</string>
     <string name="contact_us">Обратна връзка</string>
+    <string name="no_films_found">Няма намерени филми</string>
+    <string name="search_film_by_title">Търси филми по заглавие</string>
 </resources>

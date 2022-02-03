@@ -6,6 +6,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import eu.bbsapps.forgottenfilmsapp.presentation.auth.login.LoginScreen
 import eu.bbsapps.forgottenfilmsapp.presentation.auth.register.RegisterScreen
+import eu.bbsapps.forgottenfilmsapp.presentation.main.home_screen.HomeScreen
+import eu.bbsapps.forgottenfilmsapp.presentation.main.more_screen.MoreScreen
+import eu.bbsapps.forgottenfilmsapp.presentation.main.search_screen.SearchScreen
 import eu.bbsapps.forgottenfilmsapp.presentation.splash.SplashScreen
 
 @Composable
@@ -36,19 +39,19 @@ fun Navigation() {
         composable(
             route = Screen.HomeScreen.route
         ) {
-            //  HomeScreen(navController)
+            HomeScreen(navController)
         }
 
         composable(
             route = Screen.SearchScreen.route
         ) {
-            //  SearchScreen(navController)
+            SearchScreen(navController)
         }
 
         composable(
             route = Screen.MoreScreen.route
         ) {
-            // MoreScreen(navController)
+            MoreScreen(navController)
         }
 
         composable(
@@ -64,7 +67,7 @@ fun Navigation() {
         }
 
         composable(
-            route = Screen.MovieDetailsScreen.route + "/{movieId}"
+            route = Screen.FilmDetailsScreen.route + "/{movieId}"
         ) {
             // MovieDetailsScreen(navController)
         }
