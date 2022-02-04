@@ -10,7 +10,7 @@ sealed class Screen(val route: String) {
     object MoviesScreen : Screen("films_screen")
     object MyListScreen : Screen("my_list_screen")
     object FilmDetailsScreen : Screen("film_details_screen")
-    object MovieWatchScreen : Screen("film_watch_screen")
+    object FilmWatchScreen : Screen("film_watch_screen")
     object AdminPanelScreen : Screen("admin_panel_screen")
 
 }

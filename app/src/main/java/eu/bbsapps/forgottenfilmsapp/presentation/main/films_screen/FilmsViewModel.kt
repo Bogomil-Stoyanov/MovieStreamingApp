@@ -38,7 +38,7 @@ class FilmsViewModel @Inject constructor(
                 }
                 is Resource.Success -> {
                     _state.value = FilmState(
-                        film = it.data
+                        films = it.data
                     )
                 }
             }

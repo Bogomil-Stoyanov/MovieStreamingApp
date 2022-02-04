@@ -38,6 +38,7 @@ class FilmDetailsViewModel @Inject constructor(
 
     init {
         id = savedStateHandle.get("filmId") ?: ""
+        println("FILM IS ID $id")
         getFilmDetails(id)
         isFilmAddedToList(id)
     }

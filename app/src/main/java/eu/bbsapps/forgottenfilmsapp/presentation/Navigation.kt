@@ -6,8 +6,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import eu.bbsapps.forgottenfilmsapp.presentation.auth.login.LoginScreen
 import eu.bbsapps.forgottenfilmsapp.presentation.auth.register.RegisterScreen
+import eu.bbsapps.forgottenfilmsapp.presentation.film.details.FilmDetailsScreen
+import eu.bbsapps.forgottenfilmsapp.presentation.main.films_screen.FilmsScreen
 import eu.bbsapps.forgottenfilmsapp.presentation.main.home_screen.HomeScreen
 import eu.bbsapps.forgottenfilmsapp.presentation.main.more_screen.MoreScreen
+import eu.bbsapps.forgottenfilmsapp.presentation.main.my_list_screen.MyListScreen
 import eu.bbsapps.forgottenfilmsapp.presentation.main.search_screen.SearchScreen
 import eu.bbsapps.forgottenfilmsapp.presentation.splash.SplashScreen
 
@@ -57,23 +60,23 @@ fun Navigation() {
         composable(
             route = Screen.MoviesScreen.route
         ) {
-            //  MoviesScreen(navController)
+            FilmsScreen(navController)
         }
 
         composable(
             route = Screen.MyListScreen.route
         ) {
-            //  MyListScreen(navController)
+            MyListScreen(navController)
         }
 
         composable(
-            route = Screen.FilmDetailsScreen.route + "/{movieId}"
+            route = Screen.FilmDetailsScreen.route + "/{filmId}"
         ) {
-            // MovieDetailsScreen(navController)
+            FilmDetailsScreen(navController)
         }
 
         composable(
-            route = Screen.MovieWatchScreen.route + "/{movieUrl}/{movieGenre}"
+            route = Screen.FilmWatchScreen.route + "/{filmUrl}/{filmGenre}"
         ) {
             //  MovieWatchScreen(navController)
         }

@@ -98,7 +98,8 @@ fun SearchScreen(navController: NavController, viewModel: SearchViewModel = hilt
                         Text(
                             text = stringResource(R.string.no_films_found),
                             color = MaterialTheme.colors.onSurface,
-                            fontSize = fontSize
+                            fontSize = if (width < Constants.BIG_SCREEN_THRESHOLD)
+                                smallMediumFontValue else mediumFontValue
                         )
                     }
                 } else if (state.films.isEmpty() && !state.isLoading && state.error.isBlank() && !state.hasSearched) {
@@ -106,7 +107,8 @@ fun SearchScreen(navController: NavController, viewModel: SearchViewModel = hilt
                         Text(
                             text = stringResource(R.string.search_film_by_title),
                             color = MaterialTheme.colors.onSurface,
-                            fontSize = fontSize
+                            fontSize = if (width < Constants.BIG_SCREEN_THRESHOLD)
+                                smallMediumFontValue else mediumFontValue
                         )
                     }
                 }
