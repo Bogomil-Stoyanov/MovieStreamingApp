@@ -10,7 +10,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import eu.bbsapps.forgottenfilmsapp.R
 import eu.bbsapps.forgottenfilmsapp.common.Constants
 import eu.bbsapps.forgottenfilmsapp.data.remote.dto.responses.GenreWatchTimePair
 import eu.bbsapps.forgottenfilmsapp.presentation.ui.theme.*
@@ -21,7 +23,7 @@ fun Statistics(watchTimeStats: List<GenreWatchTimePair>) {
         BoxWithConstraints(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
             val width = maxWidth
             Text(
-                text = "Статистики все още не се налични",
+                text = stringResource(R.string.stats_not_available),
                 color = MaterialTheme.colors.onSurface,
                 fontSize = if (width < Constants.BIG_SCREEN_THRESHOLD)
                     smallFontValue else mediumFontValue
@@ -41,11 +43,11 @@ fun Statistics(watchTimeStats: List<GenreWatchTimePair>) {
                 }
 
                 Text(
-                    text = "Обща продължителност на гледане: ${
-                        getFormattedTimeFromSeconds(
+                    text = stringResource(
+                        id = R.string.total_watch_time, getFormattedTimeFromSeconds(
                             watchTimeStats[0].totalWatchTimeInSeconds
                         )
-                    }",
+                    ),
                     color = MaterialTheme.colors.onSurface,
                     fontSize = fontSize
                 )

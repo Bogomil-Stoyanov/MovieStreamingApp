@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import eu.bbsapps.forgottenfilmsapp.ForgottenFilmsApp.Companion.resource
 import eu.bbsapps.forgottenfilmsapp.R
 import eu.bbsapps.forgottenfilmsapp.common.Constants.BIG_SCREEN_THRESHOLD
 import eu.bbsapps.forgottenfilmsapp.presentation.LockScreenOrientation
@@ -141,7 +142,7 @@ fun MoreScreen(navController: NavController, viewModel: MoreViewModel = hiltView
                         }
                         val context = LocalContext.current
                         MoreListItem(
-                            title = stringResource(id = R.string.contact_us),
+                            title = stringResource(id = R.string.feedback),
                             icon = R.drawable.ic_support,
                             fontSize = fontSize,
                             iconSize = iconSize
@@ -152,7 +153,10 @@ fun MoreScreen(navController: NavController, viewModel: MoreViewModel = hiltView
                                     Uri.fromParts("mailto", "admin_forgotten_films@dir.bg", null)
                                 )
                             ).apply {
-                                putExtra(Intent.EXTRA_SUBJECT, "Обратна връзка")
+                                putExtra(
+                                    Intent.EXTRA_SUBJECT,
+                                    resource.getString(R.string.feedback)
+                                )
                                 context.startActivity(this)
                             }
                         }

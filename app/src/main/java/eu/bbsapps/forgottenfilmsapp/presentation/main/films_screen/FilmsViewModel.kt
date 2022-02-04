@@ -5,6 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import eu.bbsapps.forgottenfilmsapp.ForgottenFilmsApp.Companion.resource
+import eu.bbsapps.forgottenfilmsapp.R
 import eu.bbsapps.forgottenfilmsapp.common.Resource
 import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.GetAllFilmsUseCase
 import kotlinx.coroutines.flow.launchIn
@@ -28,7 +30,7 @@ class FilmsViewModel @Inject constructor(
             when (it) {
                 is Resource.Error -> {
                     _state.value = FilmState(
-                        error = it.message ?: "An unexpected error occurred"
+                        error = it.message ?: resource.getString(R.string.unknown_error_occurred)
                     )
                 }
                 is Resource.Loading -> {

@@ -6,6 +6,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import eu.bbsapps.forgottenfilmsapp.ForgottenFilmsApp.Companion.resource
+import eu.bbsapps.forgottenfilmsapp.R
 import eu.bbsapps.forgottenfilmsapp.common.Resource
 import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.FilmDetailsUseCase
 import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.movielist.FilmListUseCases
@@ -38,7 +40,6 @@ class FilmDetailsViewModel @Inject constructor(
 
     init {
         id = savedStateHandle.get("filmId") ?: ""
-        println("FILM IS ID $id")
         getFilmDetails(id)
         isFilmAddedToList(id)
     }
@@ -144,7 +145,10 @@ class FilmDetailsViewModel @Inject constructor(
             when (result) {
                 is Resource.Error -> {
                     _state.value =
-                        FilmDetailsState(error = result.message ?: "An unexpected error occurred")
+                        FilmDetailsState(
+                            error = result.message
+                                ?: resource.getString(R.string.unknown_error_occurred)
+                        )
                 }
                 is Resource.Loading -> {
                     _state.value = FilmDetailsState(isLoading = true)

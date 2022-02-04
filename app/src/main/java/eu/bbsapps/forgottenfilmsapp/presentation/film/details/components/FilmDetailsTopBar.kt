@@ -9,7 +9,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import eu.bbsapps.forgottenfilmsapp.R
 import eu.bbsapps.forgottenfilmsapp.common.Constants.BIG_SCREEN_THRESHOLD
 import eu.bbsapps.forgottenfilmsapp.presentation.ui.theme.bigIconSize
 import eu.bbsapps.forgottenfilmsapp.presentation.ui.theme.mediumPaddingValue
@@ -31,7 +33,7 @@ fun FilmDetailsTopBar(onNavigateUp: () -> Unit) {
                 Icon(
                     modifier = Modifier.size(iconSize),
                     imageVector = Icons.Default.ArrowBack,
-                    contentDescription = "Back",
+                    contentDescription = stringResource(R.string.back),
                     tint = MaterialTheme.colors.onSurface
                 )
             }

@@ -60,7 +60,11 @@
     <string name="film_categories">Жанрове</string>
     <string name="film_image_urls">Линкове към снимки</string>
     <string name="add_film">Добавяне на филм</string>
-    <string name="contact_us">Обратна връзка</string>
     <string name="no_films_found">Няма намерени филми</string>
     <string name="search_film_by_title">Търси филми по заглавие</string>
+    <string name="logo">Лого</string>
+    <string name="stats_not_available">Статистики все още не се налични</string>
+    <string name="total_watch_time">Обща продължителност на гледане: %s:</string>
+    <string name="back">Назад</string>
+    <string name="feedback">Обратна връзка</string>
 </resources>

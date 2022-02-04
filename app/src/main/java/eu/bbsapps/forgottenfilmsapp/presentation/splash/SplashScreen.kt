@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import eu.bbsapps.forgottenfilmsapp.R
 import eu.bbsapps.forgottenfilmsapp.common.Constants
@@ -64,7 +65,7 @@ fun SplashScreen(navController: NavController, dispatcher: CoroutineDispatcher =
         ) {
             Image(
                 painter = painterResource(id = R.drawable.splashlogo),
-                contentDescription = "Logo",
+                contentDescription = stringResource(R.string.logo),
                 modifier = Modifier
                     .fillMaxSize()
                     .scale(scale.value)

@@ -173,7 +173,6 @@ class RegisterViewModel @Inject constructor(
                 _isPrivacyPolicyDialogVisible.value = false
             }
             RegisterEvent.PrivacyPolicyAgreeClicked -> {
-                println("HERE")
                 _agreesToPrivacyPolicy.value = !agreesToPrivacyPolicy.value
                 checkRegisterButtonEnabled()
             }

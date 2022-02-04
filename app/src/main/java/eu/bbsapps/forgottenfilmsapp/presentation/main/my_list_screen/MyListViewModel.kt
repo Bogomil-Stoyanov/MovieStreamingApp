@@ -5,6 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import eu.bbsapps.forgottenfilmsapp.ForgottenFilmsApp.Companion.resource
+import eu.bbsapps.forgottenfilmsapp.R
 import eu.bbsapps.forgottenfilmsapp.common.Resource
 import eu.bbsapps.forgottenfilmsapp.domain.use_case.account_management.GetNicknameUseCase
 import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.movielist.GetFilmListUseCase
@@ -29,7 +31,10 @@ class MyListViewModel @Inject constructor(
             when (result) {
                 is Resource.Error -> {
                     _state.value =
-                        MyListState(error = result.message ?: "An unexpected error occurred")
+                        MyListState(
+                            error = result.message
+                                ?: resource.getString(R.string.unknown_error_occurred)
+                        )
                 }
                 is Resource.Loading -> {
                     _state.value = MyListState(isLoading = true)

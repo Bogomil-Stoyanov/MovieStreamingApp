@@ -13,7 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import eu.bbsapps.forgottenfilmsapp.R
 import eu.bbsapps.forgottenfilmsapp.common.Constants
 import eu.bbsapps.forgottenfilmsapp.presentation.ui.theme.mediumIconSize
 import eu.bbsapps.forgottenfilmsapp.presentation.ui.theme.smallIconSize
@@ -57,7 +59,7 @@ fun OutlinedSearchField(
                 Icon(
                     modifier = Modifier.size(iconSize),
                     imageVector = Icons.Default.Search,
-                    contentDescription = "Search",
+                    contentDescription = stringResource(id = R.string.search),
                     tint = MaterialTheme.colors.primary
                 )
             }
