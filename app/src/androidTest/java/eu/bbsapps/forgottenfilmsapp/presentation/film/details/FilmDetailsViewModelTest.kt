@@ -4,10 +4,10 @@ import androidx.lifecycle.SavedStateHandle
 import com.google.common.truth.Truth.assertThat
 import eu.bbsapps.forgottenfilmsapp.data.repoistory.FakeFilmRepository
 import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.FilmDetailsUseCase
-import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.movielist.AddFilmToListUseCase
-import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.movielist.FilmListUseCases
-import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.movielist.IsFilmAddedToListUseCase
-import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.movielist.RemoveFilmFromListUseCase
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.list.AddFilmToListUseCase
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.list.FilmListUseCases
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.list.IsFilmAddedToListUseCase
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.list.RemoveFilmFromListUseCase
 import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.rating.*
 import eu.bbsapps.forgottenfilmsapp.presentation.film.details.FilmDetailsEvent
 import eu.bbsapps.forgottenfilmsapp.presentation.film.details.FilmDetailsViewModel

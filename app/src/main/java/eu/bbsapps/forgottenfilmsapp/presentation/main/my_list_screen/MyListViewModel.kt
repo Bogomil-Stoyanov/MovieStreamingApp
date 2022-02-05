@@ -9,7 +9,7 @@ import eu.bbsapps.forgottenfilmsapp.ForgottenFilmsApp.Companion.resource
 import eu.bbsapps.forgottenfilmsapp.R
 import eu.bbsapps.forgottenfilmsapp.common.Resource
 import eu.bbsapps.forgottenfilmsapp.domain.use_case.account_management.GetNicknameUseCase
-import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.movielist.GetFilmListUseCase
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.list.GetFilmListUseCase
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject

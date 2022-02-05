@@ -10,7 +10,7 @@ import eu.bbsapps.forgottenfilmsapp.ForgottenFilmsApp.Companion.resource
 import eu.bbsapps.forgottenfilmsapp.R
 import eu.bbsapps.forgottenfilmsapp.common.Resource
 import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.FilmDetailsUseCase
-import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.movielist.FilmListUseCases
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.list.FilmListUseCases
 import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.rating.FilmRatingUseCases
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

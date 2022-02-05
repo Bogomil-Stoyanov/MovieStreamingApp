@@ -1,4 +1,4 @@
-package eu.bbsapps.forgottenfilmsapp.domain.use_case.film.movielist
+package eu.bbsapps.forgottenfilmsapp.domain.use_case.film.list
 
 import eu.bbsapps.forgottenfilmsapp.ForgottenFilmsApp.Companion.resource
 import eu.bbsapps.forgottenfilmsapp.R
@@ -11,13 +11,13 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class RemoveFilmFromListUseCase @Inject constructor(
+class AddFilmToListUseCase @Inject constructor(
     private val repository: FilmRepository
 ) {
     operator fun invoke(id: String): Flow<Resource<SimpleResponse>> = flow {
         try {
             emit(Resource.Loading<SimpleResponse>())
-            val response = repository.removeFilmFromList(id)
+            val response = repository.addFilmToList(id)
             emit(Resource.Success<SimpleResponse>(response))
         } catch (e: HttpException) {
             emit(

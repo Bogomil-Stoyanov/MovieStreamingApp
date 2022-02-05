@@ -20,14 +20,17 @@ class AddFilmsUseCase @Inject constructor(
         try {
             emit(Resource.Loading<Response<Unit>>())
             val response = repository.addFilms(AddFilmsRequest(listOf(film)))
+            println("OK")
             emit(Resource.Success<Response<Unit>>(response))
         } catch (e: HttpException) {
+            println("er")
             emit(
                 Resource.Error<Response<Unit>>(
                     e.localizedMessage ?: resource.getString(R.string.unknown_error_occurred)
                 )
             )
         } catch (e: IOException) {
+            println("er")
             e.printStackTrace()
             emit(Resource.Error<Response<Unit>>(resource.getString(R.string.could_not_reach_server)))
         }

@@ -1,7 +1,7 @@
 package eu.bbsapps.forgottenfilmsapp.data.remote.dto.requests.admin
 
 data class AddFilmsRequest(
-    val movies: List<Film>
+    val films: List<Film>
 )
 
 data class Film(

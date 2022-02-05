@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import eu.bbsapps.forgottenfilmsapp.presentation.admin.AdminPanelScreen
 import eu.bbsapps.forgottenfilmsapp.presentation.auth.login.LoginScreen
 import eu.bbsapps.forgottenfilmsapp.presentation.auth.register.RegisterScreen
 import eu.bbsapps.forgottenfilmsapp.presentation.film.details.FilmDetailsScreen
@@ -85,7 +86,7 @@ fun Navigation() {
         composable(
             route = Screen.AdminPanelScreen.route
         ) {
-            // AdminPanelScreen(navController)
+            AdminPanelScreen(navController)
         }
     }
 }

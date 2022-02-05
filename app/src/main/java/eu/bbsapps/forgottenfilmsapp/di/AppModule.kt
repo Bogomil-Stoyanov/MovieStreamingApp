@@ -16,10 +16,10 @@ import eu.bbsapps.forgottenfilmsapp.data.remote.BasicAuthInterceptor
 import eu.bbsapps.forgottenfilmsapp.data.remote.FilmsApi
 import eu.bbsapps.forgottenfilmsapp.data.repository.FilmRepositoryImpl
 import eu.bbsapps.forgottenfilmsapp.domain.repository.FilmRepository
-import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.movielist.AddFilmToListUseCase
-import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.movielist.FilmListUseCases
-import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.movielist.IsFilmAddedToListUseCase
-import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.movielist.RemoveFilmFromListUseCase
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.list.AddFilmToListUseCase
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.list.FilmListUseCases
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.list.IsFilmAddedToListUseCase
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.list.RemoveFilmFromListUseCase
 import eu.bbsapps.forgottenfilmsapp.domain.use_case.film.rating.*
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
