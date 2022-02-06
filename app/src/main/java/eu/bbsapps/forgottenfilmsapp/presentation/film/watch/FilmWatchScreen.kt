@@ -46,6 +46,7 @@ fun FilmWatchScreen(
         WindowManager.LayoutParams.FLAG_FULLSCREEN
     )
 
+    KeepScreenOn()
     LockScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_LANDSCAPE)
 
     val customCoroutineState = remember {
