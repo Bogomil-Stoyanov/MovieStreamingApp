@@ -1,4 +1,4 @@
-# Forgotten Films REST API Documentation
+# Forgotten Films Android App Documentation
 
 #### Contents
 * [Overview](https://github.com/Bogomil-Stoyanov/ForgottenFilmsApp#overview)
