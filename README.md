@@ -46,7 +46,7 @@ The application is built following Clean Architecture MVVM.
 ## Tests
 All ViewModels have tests that cover the business logic. 
 
-[ViewModel tests](https://github.com/Bogomil-Stoyanov/ForgottenFilmsApp/blob/master/pictures/vmTests.png)
+![ViewModel tests](https://github.com/Bogomil-Stoyanov/ForgottenFilmsApp/blob/master/pictures/vmTests.png)
 
 There are automated UI tests that verify the most user intansive screens
 
