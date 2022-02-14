@@ -8,7 +8,7 @@
 * [Tests](https://github.com/Bogomil-Stoyanov/ForgottenFilmsApp#tests)
 * [Security](https://github.com/Bogomil-Stoyanov/ForgottenFilmsApp#security)
 * [Screenshots](https://github.com/Bogomil-Stoyanov/ForgottenFilmsApp#screenshots)
-* [Deployment](https://github.com/Bogomil-Stoyanov/ForgottenFilmsApi#deployment)
+* [Deployment](https://github.com/Bogomil-Stoyanov/ForgottenFilmsApp#deployment)
 
 ## Overview
 Forgotten Films App is an Android application for enjoying films from the past. It provides everything that you will need to immerse the user in the world of classic films.
