@@ -165,6 +165,14 @@ class FakeFilmRepository : FilmRepository {
     override suspend fun addFilms(addFilmsRequest: AddFilmsRequest): Response<Unit> {
         return Response.success(Unit)
     }
+
+    override suspend fun forgottenPassword(email: String): SimpleResponse {
+        return SimpleResponse(true,"")
+    }
+
+    override suspend fun changePassword(password: String): SimpleResponse {
+        return SimpleResponse(true,"")
+    }
 }
 
 val genres = listOf("Animation", "Action", "Drama", "Horror")
