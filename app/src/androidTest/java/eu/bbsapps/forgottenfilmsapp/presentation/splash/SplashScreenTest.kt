@@ -1,9 +1,12 @@
 package eu.bbsapps.forgottenfilmsapp.presentation.splash
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.navigation.NavController
+import eu.bbsapps.forgottenfilmsapp.ForgottenFilmsApp.Companion.resource
+import eu.bbsapps.forgottenfilmsapp.R
 import eu.bbsapps.forgottenfilmsapp.common.Constants
 import eu.bbsapps.forgottenfilmsapp.presentation.MainActivity
 import eu.bbsapps.forgottenfilmsapp.presentation.Screen
@@ -47,7 +50,7 @@ class SplashScreenTest {
         }
 
         composeTestRule
-            .onNodeWithContentDescription("Logo")
+            .onNodeWithContentDescription(resource.getString(R.string.logo))
             .assertExists()
 
         advanceTimeBy(Constants.SPLASH_SCREEN_DURATION)

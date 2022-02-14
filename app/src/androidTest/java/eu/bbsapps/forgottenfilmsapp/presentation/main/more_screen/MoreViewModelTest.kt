@@ -40,6 +40,7 @@ class MoreViewModelTest {
             GetAllGenresUseCase(FakeFilmRepository()),
             GetWatchTimeUseCase(FakeFilmRepository()),
             IsAdminUseCase(FakeFilmRepository()),
+            ChangePasswordUseCase(FakeFilmRepository()),
             sharedPrefs
         )
     }
