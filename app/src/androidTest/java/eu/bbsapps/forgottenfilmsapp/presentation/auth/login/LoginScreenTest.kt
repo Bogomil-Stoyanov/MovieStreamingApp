@@ -3,6 +3,7 @@ package eu.bbsapps.forgottenfilmsapp.presentation.auth.login
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
@@ -17,6 +18,7 @@ import eu.bbsapps.forgottenfilmsapp.common.TestTags.PASSWORD_TEXT_FIELD
 import eu.bbsapps.forgottenfilmsapp.common.TestTags.REMEMBER_ME_CHECKBOX
 import eu.bbsapps.forgottenfilmsapp.data.remote.BasicAuthInterceptor
 import eu.bbsapps.forgottenfilmsapp.data.repoistory.FakeFilmRepository
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.account_management.ForgottenPasswordUseCase
 import eu.bbsapps.forgottenfilmsapp.domain.use_case.auth.LoginUseCase
 import eu.bbsapps.forgottenfilmsapp.presentation.MainActivity
 import eu.bbsapps.forgottenfilmsapp.presentation.ui.theme.ForgottenFilmsAppTheme
@@ -37,6 +39,7 @@ class LoginScreenTest {
     private lateinit var sharedPrefs: SharedPreferences
     private lateinit var context: Context
 
+    @ExperimentalFoundationApi
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
@@ -44,6 +47,7 @@ class LoginScreenTest {
         sharedPrefs = context.getSharedPreferences(ENCRYPTED_SHARED_PREF_NAME, MODE_PRIVATE)
         viewModel = LoginViewModel(
             LoginUseCase(FakeFilmRepository()),
+            ForgottenPasswordUseCase(FakeFilmRepository()),
             sharedPrefs, BasicAuthInterceptor()
         )
 

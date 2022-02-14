@@ -132,4 +132,12 @@ class FilmRepositoryImpl @Inject constructor(private val moviesApi: FilmsApi) : 
     override suspend fun addFilms(addFilmsRequest: AddFilmsRequest): Response<Unit> {
         return moviesApi.addFilms(addFilmsRequest)
     }
+
+    override suspend fun forgottenPassword(email: String): SimpleResponse {
+        return moviesApi.forgottenPassword(email)
+    }
+
+    override suspend fun changePassword(password: String): SimpleResponse {
+        return moviesApi.changePassword(password)
+    }
 }

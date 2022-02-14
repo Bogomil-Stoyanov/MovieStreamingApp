@@ -1,5 +1,6 @@
 package eu.bbsapps.forgottenfilmsapp.presentation.splash
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.navigation.NavController
@@ -33,6 +34,7 @@ class SplashScreenTest {
         MockKAnnotations.init(this)
     }
 
+    @ExperimentalFoundationApi
     @Test
     fun splashScreen_displaysAndDisappears() = testDispatcher.runBlockingTest {
         composeTestRule.setContent {

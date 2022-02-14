@@ -15,6 +15,7 @@ import eu.bbsapps.forgottenfilmsapp.common.Constants.NO_PASSWORD
 import eu.bbsapps.forgottenfilmsapp.common.Resource
 import eu.bbsapps.forgottenfilmsapp.data.remote.BasicAuthInterceptor
 import eu.bbsapps.forgottenfilmsapp.data.remote.dto.requests.user.login.LoginAccountRequest
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.account_management.ForgottenPasswordUseCase
 import eu.bbsapps.forgottenfilmsapp.domain.use_case.auth.LoginUseCase
 import eu.bbsapps.forgottenfilmsapp.presentation.auth.components.PasswordTextFieldState
 import eu.bbsapps.forgottenfilmsapp.presentation.components.OutlinedTextFieldState
@@ -25,6 +26,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
+    private val forgottenPasswordUseCase: ForgottenPasswordUseCase,
     private val sharedPref: SharedPreferences,
     private val basicAuthInterceptor: BasicAuthInterceptor
 ) : ViewModel() {
@@ -43,8 +45,15 @@ class LoginViewModel @Inject constructor(
         mutableStateOf(PasswordTextFieldState(hint = resource.getString(R.string.password)))
     val password: State<PasswordTextFieldState> = _password
 
+    private val _forgottenEmail =
+        mutableStateOf(OutlinedTextFieldState(hint = resource.getString(R.string.forgottenPasswordEmail)))
+    val forgottenEmail: State<OutlinedTextFieldState> = _forgottenEmail
+
     private val _rememberMe = mutableStateOf(false)
     val rememberMe: State<Boolean> = _rememberMe
+
+    private val _forgottenPasswordDialogVisible = mutableStateOf(false)
+    val forgottenPasswordDialogVisible: State<Boolean> = _forgottenPasswordDialogVisible
 
     init {
         curEmail = sharedPref.getString(KEY_LOGGED_IN_EMAIL, NO_EMAIL) ?: NO_EMAIL
@@ -88,7 +97,50 @@ class LoginViewModel @Inject constructor(
             is LoginEvent.ChangePasswordVisibility -> {
                 _password.value = password.value.copy(isPasswordVisible = event.isVisible)
             }
+            is LoginEvent.ChangeForgottenPasswordEmailFocus -> {
+                _forgottenEmail.value = forgottenEmail.value.copy(
+                    isHintVisible = !event.focusState.isFocused &&
+                            forgottenEmail.value.text.isBlank()
+                )
+            }
+            is LoginEvent.EnteredForgottenPasswordEmail -> {
+                _forgottenEmail.value = forgottenEmail.value.copy(text = event.value)
+            }
+            LoginEvent.ForgottenPasswordClicked -> {
+                _forgottenPasswordDialogVisible.value = true
+            }
+            LoginEvent.ForgottenPasswordDialogDismissed -> {
+                _forgottenPasswordDialogVisible.value = false
+                _forgottenEmail.value = forgottenEmail.value.copy(text = "")
+            }
+            LoginEvent.SendResetPasswordClicked -> {
+                forgottenPassword(forgottenEmail.value.text)
+                _forgottenEmail.value = forgottenEmail.value.copy(text = "")
+            }
         }
+    }
+
+    private fun forgottenPassword(email: String) {
+        forgottenPasswordUseCase(email).onEach { result ->
+            when (result) {
+                is Resource.Error -> {
+                    _state.value =
+                        LoginState(
+                            error = result.message
+                                ?: resource.getString(R.string.unknown_error_occurred)
+                        )
+                }
+                is Resource.Loading -> {
+                    _state.value = LoginState(isLoading = true)
+                }
+                is Resource.Success -> {
+                    _state.value = LoginState(
+                        error = result.data?.message
+                            ?: resource.getString(R.string.recovery_email_sent)
+                    )
+                }
+            }
+        }.launchIn(viewModelScope)
     }
 
     private fun logIn() {

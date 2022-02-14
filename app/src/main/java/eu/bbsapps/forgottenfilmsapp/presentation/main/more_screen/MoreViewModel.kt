@@ -33,6 +33,7 @@ class MoreViewModel @Inject constructor(
     private val getAllGenresUseCase: GetAllGenresUseCase,
     private val getWatchTimeUseCase: GetWatchTimeUseCase,
     private val isAdminUseCase: IsAdminUseCase,
+    private val changePasswordUseCase: ChangePasswordUseCase,
     private val sharedPref: SharedPreferences
 ) : ViewModel() {
 
@@ -41,6 +42,9 @@ class MoreViewModel @Inject constructor(
 
     private val _error = mutableStateOf("")
     val error: State<String> = _error
+
+    private val _info = mutableStateOf("")
+    val info: State<String> = _info
 
     private val _isFavouriteCategoriesDialogVisible = mutableStateOf(false)
     val isFavouriteCategoriesDialogVisible: State<Boolean> = _isFavouriteCategoriesDialogVisible
@@ -66,6 +70,13 @@ class MoreViewModel @Inject constructor(
 
     private val _isAdmin = mutableStateOf(false)
     val isAdmin: State<Boolean> = _isAdmin
+
+    private val _changePasswordState =
+        mutableStateOf(OutlinedTextFieldState(hint = resource.getString(R.string.changePassword)))
+    val changePasswordState: State<OutlinedTextFieldState> = _changePasswordState
+
+    private val _isChangePasswordDialogVisible = mutableStateOf(false)
+    val isChangePasswordDialogVisible: State<Boolean> = _isChangePasswordDialogVisible
 
     init {
         getAllGenres()
@@ -132,7 +143,56 @@ class MoreViewModel @Inject constructor(
             MoreScreenEvent.PrivacyPolicyDialogCanceled -> {
                 _isPrivacyPolicyDialogVisible.value = false
             }
+            MoreScreenEvent.ChangePasswordClicked -> {
+                _isChangePasswordDialogVisible.value = true
+            }
+            is MoreScreenEvent.ChangePasswordFocus -> {
+                _changePasswordState.value = changePasswordState.value.copy(
+                    isHintVisible = !event.focusState.isFocused &&
+                            changePasswordState.value.text.isBlank()
+                )
+            }
+            MoreScreenEvent.DismissPasswordDialog -> {
+                _isChangePasswordDialogVisible.value = false
+                _changePasswordState.value = changePasswordState.value.copy(text = "")
+            }
+            is MoreScreenEvent.EnteredPassword -> {
+                _changePasswordState.value = changePasswordState.value.copy(text = event.value)
+
+                val passwordPattern =
+                    "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=_])(?=\\S+$).{8,}".toRegex()
+
+                if (!passwordPattern.matches(changePasswordState.value.text)) {
+                    _changePasswordState.value =
+                        changePasswordState.value.copy(error = resource.getString(R.string.enter_valid_password))
+                } else {
+                    if (changePasswordState.value.error.isNotBlank()) {
+                        _changePasswordState.value = changePasswordState.value.copy(error = "")
+                    }
+                }
+            }
+            MoreScreenEvent.SaveChangePasswordDialog -> {
+                changePassword(changePasswordState.value.text)
+            }
         }
+    }
+
+    private fun changePassword(newPassword: String) {
+        changePasswordUseCase(newPassword).onEach { result ->
+            if (result is Resource.Error) {
+                _error.value = result.data?.message
+                    ?: resource.getString(R.string.unknown_error_occurred)
+
+            } else if (result is Resource.Success) {
+                if (result.data?.successful == true) {
+                    _info.value = resource.getString(R.string.successfully_changed_password)
+                    logOut()
+                } else {
+                    _info.value =
+                        result.data?.message ?: resource.getString(R.string.unknown_error_occurred)
+                }
+            }
+        }.launchIn(viewModelScope)
     }
 
     private fun isAdmin() {

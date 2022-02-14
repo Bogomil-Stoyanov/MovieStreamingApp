@@ -15,5 +15,10 @@ sealed class MoreScreenEvent {
     object PrivacyPolicyDialogCanceled : MoreScreenEvent()
     data class ChangeNicknameFocus(val focusState: FocusState) : MoreScreenEvent()
     data class InterestChangedInDialog(val interest: String) : MoreScreenEvent()
+    data class ChangePasswordFocus(val focusState: FocusState) : MoreScreenEvent()
+    data class EnteredPassword(val value: String) : MoreScreenEvent()
+    object ChangePasswordClicked : MoreScreenEvent()
+    object DismissPasswordDialog : MoreScreenEvent()
+    object SaveChangePasswordDialog : MoreScreenEvent()
 }
 

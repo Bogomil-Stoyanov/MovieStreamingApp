@@ -10,4 +10,9 @@ sealed class LoginEvent {
     data class ChangePasswordVisibility(val isVisible: Boolean) : LoginEvent()
     object RememberMeClicked : LoginEvent()
     object LoginClicked : LoginEvent()
+    object ForgottenPasswordClicked : LoginEvent()
+    object ForgottenPasswordDialogDismissed : LoginEvent()
+    object SendResetPasswordClicked : LoginEvent()
+    data class EnteredForgottenPasswordEmail(val value: String) : LoginEvent()
+    data class ChangeForgottenPasswordEmailFocus(val focusState: FocusState) : LoginEvent()
 }

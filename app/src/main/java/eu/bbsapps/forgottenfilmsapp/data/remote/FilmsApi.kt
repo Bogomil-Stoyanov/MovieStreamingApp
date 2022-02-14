@@ -184,5 +184,15 @@ interface FilmsApi {
         @Query("apiKey") apiKey: String = ADMIN_API_KEY
     ): Response<Unit>
 
+    @POST("forgottenPassword")
+    suspend fun forgottenPassword(
+        @Query("email") email: String,
+        @Query("apiKey") apiKey: String = ACCOUNT_MANAGEMENT_API_KEY
+    ): SimpleResponse
 
+    @POST("changePassword")
+    suspend fun changePassword(
+        @Query("password") password: String,
+        @Query("apiKey") apiKey: String = ACCOUNT_MANAGEMENT_API_KEY
+    ): SimpleResponse
 }

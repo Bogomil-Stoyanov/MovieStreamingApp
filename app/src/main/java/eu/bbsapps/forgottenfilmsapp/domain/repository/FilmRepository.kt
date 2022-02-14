@@ -39,4 +39,6 @@ interface FilmRepository {
     suspend fun deleteUser(email: String): Response<Unit>
     suspend fun deleteFilm(filmName: String): Response<Unit>
     suspend fun addFilms(addFilmsRequest: AddFilmsRequest): Response<Unit>
+    suspend fun forgottenPassword(email: String): SimpleResponse
+    suspend fun changePassword(password: String): SimpleResponse
 }

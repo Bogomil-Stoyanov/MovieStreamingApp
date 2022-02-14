@@ -37,8 +37,10 @@ import eu.bbsapps.forgottenfilmsapp.presentation.main.components.BottomBarEntry
 import eu.bbsapps.forgottenfilmsapp.presentation.main.components.MainTopBar
 import eu.bbsapps.forgottenfilmsapp.presentation.main.more_screen.dialogs.ChangeFavouriteCategoriesDialog
 import eu.bbsapps.forgottenfilmsapp.presentation.main.more_screen.dialogs.ChangeNicknameDialog
+import eu.bbsapps.forgottenfilmsapp.presentation.main.more_screen.dialogs.ChangePasswordDialog
 import eu.bbsapps.forgottenfilmsapp.presentation.main.more_screen.dialogs.PrivacyPolicyDialog
 import eu.bbsapps.forgottenfilmsapp.presentation.ui.theme.*
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
@@ -104,6 +106,16 @@ fun MoreScreen(navController: NavController, viewModel: MoreViewModel = hiltView
                         ) {
                             viewModel.onEvent(MoreScreenEvent.ChangeNicknameClicked)
                         }
+
+                        MoreListItem(
+                            title = stringResource(id = R.string.changePassword),
+                            icon = R.drawable.ic_password,
+                            fontSize = fontSize,
+                            iconSize = iconSize
+                        ) {
+                            viewModel.onEvent(MoreScreenEvent.ChangePasswordClicked)
+                        }
+
                         Row(
                             Modifier
                                 .padding(top = mediumPaddingValue)
@@ -228,19 +240,50 @@ fun MoreScreen(navController: NavController, viewModel: MoreViewModel = hiltView
             }
         }
 
-        if (viewModel.error.value.isNotBlank()) {
-            val context = LocalContext.current
-            LaunchedEffect(key1 = viewModel.error.value) {
-                scope.launch {
-                    val snackbarResult = scaffoldState.snackbarHostState.showSnackbar(
-                        message = viewModel.error.value,
-                        actionLabel = context.getString(R.string.retry),
-                        duration = SnackbarDuration.Indefinite,
-                    )
+        if (viewModel.isChangePasswordDialogVisible.value) {
+            ChangePasswordDialog(
+                textFieldState = viewModel.changePasswordState.value,
+                onSave = {
+                    viewModel.onEvent(MoreScreenEvent.SaveChangePasswordDialog)
+                },
+                onValueChange = { viewModel.onEvent(MoreScreenEvent.EnteredPassword(it)) },
+                onChangeFocus = { viewModel.onEvent(MoreScreenEvent.ChangePasswordFocus(it)) },
+                onDismiss = {
+                    viewModel.onEvent(MoreScreenEvent.DismissPasswordDialog)
+                    focusManager.clearFocus()
+                }
+            )
+        }
+    }
 
-                    if (snackbarResult == SnackbarResult.ActionPerformed) {
-                        viewModel.getNickname()
-                    }
+    if (viewModel.error.value.isNotBlank()) {
+        val context = LocalContext.current
+        LaunchedEffect(key1 = viewModel.error.value) {
+            scope.launch {
+                val snackbarResult = scaffoldState.snackbarHostState.showSnackbar(
+                    message = viewModel.error.value,
+                    actionLabel = context.getString(R.string.retry),
+                    duration = SnackbarDuration.Indefinite,
+                )
+
+                if (snackbarResult == SnackbarResult.ActionPerformed) {
+                    viewModel.getNickname()
+                }
+            }
+        }
+    }
+
+    if (viewModel.info.value.isNotBlank()) {
+        val context = LocalContext.current
+        LaunchedEffect(key1 = viewModel.info.value) {
+            scope.launch {
+                scaffoldState.snackbarHostState.showSnackbar(viewModel.info.value)
+            }
+            if (viewModel.info.value == context.getString(R.string.successfully_changed_password)) {
+                delay(1000L)
+                navController.popBackStack()
+                navController.navigate(Screen.LoginScreen.route) {
+                    popUpTo(Screen.HomeScreen.route) { inclusive = true }
                 }
             }
         }

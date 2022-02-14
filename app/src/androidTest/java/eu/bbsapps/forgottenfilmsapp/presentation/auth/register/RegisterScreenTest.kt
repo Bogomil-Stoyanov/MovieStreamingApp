@@ -1,5 +1,6 @@
 package eu.bbsapps.forgottenfilmsapp.presentation.auth.register
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -34,6 +35,7 @@ class RegisterScreenTest {
 
     private lateinit var viewModel: RegisterViewModel
 
+    @ExperimentalFoundationApi
     @Before
     fun setUp() {
         MockKAnnotations.init(this)

@@ -20,6 +20,7 @@
     <string name="dont_have_account">Нямаш акаунт?</string>
     <string name="sign_up_here">Регистрирай се тук</string>
     <string name="email">Имейл</string>
+    <string name="forgottenPasswordEmail">Имейл за възстановяване</string>
     <string name="password">Парола</string>
     <string name="unknown_error_occurred">Възникна неочаквана грешка</string>
     <string name="sign_up">Регистрация</string>
@@ -65,6 +66,15 @@
     <string name="logo">Лого</string>
     <string name="stats_not_available">Статистики все още не се налични</string>
     <string name="total_watch_time">Обща продължителност на гледане: %s:</string>
+    <string name="delete_user_with_email">Изтриване на потребител с имейл: %s:</string>
     <string name="back">Назад</string>
     <string name="feedback">Обратна връзка</string>
+    <string name="forgottenPassword">Забравена парола</string>
+    <string name="sendNewPassword">Изпрати</string>
+    <string name="changePassword">Смяна на парола</string>
+    <string name="newPassword">Нова парола</string>
+    <string name="total_watch_time_admin">Общо време на гледане</string>
+    <string name="delete">Изтриване</string>
+    <string name="recovery_email_sent">Изпратен е имейл, съдържащ инструкции са възстановяване на акаунта</string>
+    <string name="successfully_changed_password">Успешно сменена парола</string>
 </resources>

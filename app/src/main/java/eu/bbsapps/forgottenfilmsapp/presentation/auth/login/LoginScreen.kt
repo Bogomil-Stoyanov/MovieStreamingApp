@@ -30,6 +30,7 @@ import eu.bbsapps.forgottenfilmsapp.common.TestTags.REMEMBER_ME_CHECKBOX
 import eu.bbsapps.forgottenfilmsapp.presentation.LockScreenOrientation
 import eu.bbsapps.forgottenfilmsapp.presentation.Screen
 import eu.bbsapps.forgottenfilmsapp.presentation.auth.components.PasswordTextField
+import eu.bbsapps.forgottenfilmsapp.presentation.auth.login.dialogs.ForgottenPasswordDialog
 import eu.bbsapps.forgottenfilmsapp.presentation.components.OutlinedTextFieldWithHint
 import eu.bbsapps.forgottenfilmsapp.presentation.ui.theme.*
 import kotlinx.coroutines.launch
@@ -171,37 +172,62 @@ fun LoginScreen(navController: NavController, viewModel: LoginViewModel = hiltVi
                         )
                     }
                 }
-                Row(
+                Column(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(bottom = largeSpacerValue),
-                    verticalAlignment = Alignment.Bottom,
-                    horizontalArrangement = Arrangement.Center
+                    verticalArrangement = Arrangement.Bottom
                 ) {
-                    fontSize = if (width < BIG_SCREEN_THRESHOLD) smallFontValue else mediumFontValue
-                    Text(
-                        text = stringResource(R.string.dont_have_account) + " ",
-                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.7f),
-                        fontSize = fontSize
-                    )
-                    Text(
-                        text = stringResource(R.string.sign_up_here),
-                        style = TextStyle(
-                            textDecoration = TextDecoration.Underline,
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.Bottom,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        fontSize =
+                            if (width < BIG_SCREEN_THRESHOLD) smallFontValue else mediumFontValue
+                        Text(
+                            text = stringResource(R.string.dont_have_account) + " ",
+                            color = MaterialTheme.colors.onSurface.copy(alpha = 0.7f),
                             fontSize = fontSize
-                        ),
-                        color = MaterialTheme.colors.onSurface,
-                        modifier = Modifier.clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            indication = null
-                        ) {
-                            navController.navigate(Screen.RegisterScreen.route)
-                        }
-                    )
+                        )
+                        Text(
+                            text = stringResource(R.string.sign_up_here),
+                            style = TextStyle(
+                                textDecoration = TextDecoration.Underline,
+                                fontSize = fontSize
+                            ),
+                            color = MaterialTheme.colors.onSurface,
+                            modifier = Modifier.clickable(
+                                interactionSource = remember { MutableInteractionSource() },
+                                indication = null
+                            ) {
+                                navController.navigate(Screen.RegisterScreen.route)
+                            }
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(tinySpacerValue))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.Bottom,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.forgottenPassword) + "?",
+                            style = TextStyle(
+                                textDecoration = TextDecoration.Underline,
+                                fontSize = fontSize
+                            ),
+                            modifier = Modifier.clickable(
+                                interactionSource = remember { MutableInteractionSource() },
+                                indication = null
+                            ) {
+                                viewModel.onEvent(LoginEvent.ForgottenPasswordClicked)
+                            }
+                        )
+                    }
                 }
             }
         }
-
 
         if (state.isLoading) {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -221,6 +247,19 @@ fun LoginScreen(navController: NavController, viewModel: LoginViewModel = hiltVi
                     scaffoldState.snackbarHostState.showSnackbar(message = state.error)
                 }
             }
+        }
+
+        if (viewModel.forgottenPasswordDialogVisible.value) {
+            ForgottenPasswordDialog(
+                textFieldState = viewModel.forgottenEmail.value,
+                onSave = { viewModel.onEvent(LoginEvent.SendResetPasswordClicked) },
+                onValueChange = { viewModel.onEvent(LoginEvent.EnteredForgottenPasswordEmail(it)) },
+                onChangeFocus = { viewModel.onEvent(LoginEvent.ChangeForgottenPasswordEmailFocus(it)) },
+                onDismiss = {
+                    viewModel.onEvent(LoginEvent.ForgottenPasswordDialogDismissed)
+                    focusManager.clearFocus()
+                }
+            )
         }
 
         state.loginSuccessful?.let { isLoggedIn ->

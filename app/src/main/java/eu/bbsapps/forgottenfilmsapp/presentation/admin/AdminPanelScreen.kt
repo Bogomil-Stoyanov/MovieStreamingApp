@@ -65,7 +65,7 @@ fun AdminPanelScreen(navController: NavController, viewModel: AdminViewModel = h
                     Box(modifier = Modifier.padding(start = mediumPaddingValue)) {
                         StatisticsItem(
                             modifier = Modifier.width(width / 1.5f),
-                            title = "Общо време на гледане",
+                            title = stringResource(R.string.total_watch_time_admin),
                             value = getFormattedTimeFromSeconds(
                                 if (viewModel.watchTimeStats.isNotEmpty())
                                     viewModel.watchTimeStats[0].totalWatchTimeInSeconds else 0
@@ -130,6 +130,7 @@ fun AdminPanelScreen(navController: NavController, viewModel: AdminViewModel = h
                         it.email.lowercase()
                             .contains(viewModel.searchUserState.value.text.lowercase())
                     }
+                val context = LocalContext.current
                 UsersListDialog(users = users,
                     width = width,
                     userSearchState = viewModel.searchUserState.value,
@@ -147,8 +148,11 @@ fun AdminPanelScreen(navController: NavController, viewModel: AdminViewModel = h
                         focusManager.clearFocus()
                         scope.launch {
                             val snackbarResult = scaffoldState.snackbarHostState.showSnackbar(
-                                message = "Изтриване на потребител с имейл: ${it.email}",
-                                actionLabel = "Изтриване",
+                                message = context.getString(
+                                    R.string.delete_user_with_email,
+                                    it.email
+                                ),
+                                actionLabel = context.getString(R.string.delete),
                                 duration = SnackbarDuration.Short,
                             )
 

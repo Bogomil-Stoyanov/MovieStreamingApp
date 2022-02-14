@@ -7,6 +7,7 @@ import com.google.common.truth.Truth.assertThat
 import eu.bbsapps.forgottenfilmsapp.common.Constants
 import eu.bbsapps.forgottenfilmsapp.data.remote.BasicAuthInterceptor
 import eu.bbsapps.forgottenfilmsapp.data.repoistory.FakeFilmRepository
+import eu.bbsapps.forgottenfilmsapp.domain.use_case.account_management.ForgottenPasswordUseCase
 import eu.bbsapps.forgottenfilmsapp.domain.use_case.auth.LoginUseCase
 import eu.bbsapps.forgottenfilmsapp.util.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -32,7 +33,9 @@ class LoginViewModelTest {
             Context.MODE_PRIVATE
         )
         viewModel = LoginViewModel(
-            LoginUseCase(FakeFilmRepository()), sharedPrefs, BasicAuthInterceptor()
+            LoginUseCase(FakeFilmRepository()),
+            ForgottenPasswordUseCase(FakeFilmRepository()),
+            sharedPrefs, BasicAuthInterceptor()
         )
     }
 

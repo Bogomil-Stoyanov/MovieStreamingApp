@@ -310,6 +310,8 @@ fun RegisterScreen(navController: NavController, viewModel: RegisterViewModel = 
                 }
             }
 
+
+
             if (state.error.isNotBlank()) {
                 LaunchedEffect(key1 = state.error) {
                     scope.launch {
