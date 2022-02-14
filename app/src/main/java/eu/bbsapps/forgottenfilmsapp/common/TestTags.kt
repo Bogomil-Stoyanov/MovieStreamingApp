@@ -1,0 +1,16 @@
+package eu.bbsapps.forgottenfilmsapp.common
+
+object TestTags {
+
+    const val EMAIL_TEXT_FIELD = "EMAIL_TEXT_FIELD"
+    const val PASSWORD_TEXT_FIELD = "PASSWORD_TEXT_FIELD"
+    const val CONFIRM_PASSWORD_TEXT_FIELD = "CONFIRM_PASSWORD_TEXT_FIELD"
+    const val NICKNAME_TEXT_FIELD = "NICKNAME_TEXT_FIELD"
+
+    const val REMEMBER_ME_CHECKBOX = "REMEMBER_ME_CHECKBOX"
+
+    const val PRIVACY_POLICY_AGREEMENT = "PRIVACY_POLICY_AGREEMENT"
+
+    const val LOGIN_BUTTON = "LOGIN_BUTTON"
+    const val REGISTER_BUTTON = "REGISTER_BUTTON"
+}
