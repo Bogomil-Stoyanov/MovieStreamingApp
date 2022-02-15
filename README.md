@@ -29,7 +29,7 @@ Forgotten Films App is an Android application for enjoying films from the past. 
 
 ## Libraries
 
-Forgotten Films uses the most modern libraries for backend development with Ktor
+Forgotten Films uses the most modern libraries for Android Development
 
 - [AndroidX] - Extension libraries for Android (https://github.com/androidx)
 - [Retrofit] - A type-safe HTTP client for Android (https://github.com/square/retrofit)
