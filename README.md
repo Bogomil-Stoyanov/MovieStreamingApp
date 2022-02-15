@@ -11,7 +11,7 @@
 * [Deployment](https://github.com/Bogomil-Stoyanov/ForgottenFilmsApp#deployment)
 
 ## Overview
-Forgotten Films App is an Android application for enjoying films from the past. It provides everything that you will need to immerse the user in the world of classic films.
+Forgotten Films App is an Android application for enjoying films from the past. It provides everything that you will need to immerse the user in the world of classic films. <br />
 **Get it here:** [Forgotten Films](http://bbsapps.eu/forgottenfilms/forgottenfilms.html)
 
 #### Tech stack:
@@ -39,11 +39,14 @@ Forgotten Films uses the most modern libraries for backend development with Ktor
 
 ## Architecture
 
-The application is built following Clean Architecture MVVM.
+The application is built following **Clean Architecture MVVM**.
 
 ![Architecture](https://github.com/Bogomil-Stoyanov/ForgottenFilmsApp/blob/master/pictures/appArch.png)
 
+Also it is using **Single Activity Architecture**. 
+
 ## Tests
+The application follows **Test Driven Development**.<br />. The tests are creted before the actual implementation
 All ViewModels have tests that cover the business logic. 
 
 ![ViewModel tests](https://github.com/Bogomil-Stoyanov/ForgottenFilmsApp/blob/master/pictures/vmTests.png)
